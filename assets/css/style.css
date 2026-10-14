@@ -1,0 +1,413 @@
+/* Editorial systems design · Henry Yusuf Rizaldy */
+:root {
+    --ink: #1d2827;
+    --muted: #60706a;
+    --paper: #f3f0e8;
+    --surface: #fffdf8;
+    --border: #d7d9d0;
+    --accent: #d65735;
+    --accent-dark: #9c361d;
+    --shadow: 0 24px 80px #1d282726;
+}
+* {
+    box-sizing: border-box;
+}
+html {
+    scroll-behavior: smooth;
+}
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: #152721;
+    color: var(--ink);
+    font-family: "DM Sans", sans-serif;
+}
+body:before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.13;
+    background-image: radial-gradient(#e3f0e1 0.6px, transparent 0.6px);
+    background-size: 12px 12px;
+}
+button,
+a {
+    font: inherit;
+}
+a {
+    color: inherit;
+}
+.shell {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 0;
+    overflow: hidden;
+}
+.slide {
+    position: relative;
+    display: flex !important;
+    flex-direction: column;
+    width: 1382px;
+    height: 777px;
+    min-height: 0;
+    max-height: none;
+    flex: 0 0 auto;
+    overflow: hidden;
+    background: var(--paper) !important;
+    color: var(--ink) !important;
+    border-radius: 5px;
+    box-shadow: var(--shadow);
+    padding: 36px 49px 41px !important;
+    isolation: isolate;
+    transform-origin: center center;
+}
+.slide:before {
+    content: attr(data-slide);
+    position: absolute;
+    right: -0.015em;
+    bottom: -0.22em;
+    font:
+        700 390px/1 "Space Grotesk",
+        sans-serif;
+    letter-spacing: -0.11em;
+    color: #d6ddd1;
+    opacity: 0.4;
+    pointer-events: none;
+    z-index: -1;
+}
+.slide:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 7px;
+    background: var(--accent);
+}
+.slide > div:first-child {
+    flex-shrink: 0;
+}
+.slide > div:last-child {
+    flex-shrink: 0;
+}
+.slide .mono {
+    font-family: "IBM Plex Mono", monospace !important;
+    letter-spacing: 0.035em;
+}
+.slide h1,
+.slide h2,
+.slide h3,
+.slide .text-lg,
+.slide .text-xl {
+    font-family: "Space Grotesk", sans-serif !important;
+    letter-spacing: -0.035em !important;
+}
+.slide h1 {
+    font-size: clamp(42px, 5vw, 77px) !important;
+    max-width: 820px;
+    line-height: 1.02 !important;
+    color: var(--ink) !important;
+}
+.slide h2 {
+    font-size: clamp(24px, 2.5vw, 39px) !important;
+    line-height: 1.14 !important;
+    color: var(--ink) !important;
+}
+.slide h3 {
+    font-size: clamp(20px, 2vw, 33px) !important;
+    color: var(--ink) !important;
+}
+.slide .text-white,
+.slide .text-slate-200,
+.slide .text-slate-300 {
+    color: var(--ink) !important;
+}
+.slide .text-slate-400,
+.slide .text-slate-500 {
+    color: var(--muted) !important;
+}
+.slide .text-sky-400,
+.slide .text-sky-300,
+.slide .text-indigo-400,
+.slide .text-indigo-300,
+.slide .text-emerald-400,
+.slide .text-emerald-300,
+.slide .text-rose-400,
+.slide .text-rose-300,
+.slide .text-amber-500,
+.slide .text-amber-400 {
+    color: var(--accent-dark) !important;
+}
+.slide .border-slate-800\/80,
+.slide .border-slate-700\/60,
+.slide .border-slate-700\/80 {
+    border-color: var(--border) !important;
+}
+.slide .card-pro {
+    background: var(--surface) !important;
+    border: 1px solid var(--border) !important;
+    border-top: 3px solid var(--accent) !important;
+    box-shadow: 0 9px 28px #18271a09 !important;
+    border-radius: 2px !important;
+    backdrop-filter: none !important;
+}
+.slide .card-pro:hover {
+    border-color: #d6b5a5 !important;
+}
+.slide .inner-box {
+    background: #f6f4ed !important;
+    border: 1px solid #e3e1d7 !important;
+    border-radius: 2px !important;
+}
+.slide .rounded-2xl,
+.slide .rounded-xl,
+.slide .rounded-lg {
+    border-radius: 3px !important;
+}
+.slide .rounded-full {
+    border-radius: 100px !important;
+}
+.slide .bg-slate-800\/90,
+.slide .bg-slate-900\/90,
+.slide .bg-slate-800 {
+    background: #e5e5dc !important;
+}
+.slide .bg-sky-500\/10,
+.slide .bg-indigo-500\/10,
+.slide .bg-emerald-500\/10,
+.slide .bg-emerald-950\/20,
+.slide .bg-sky-500\/15,
+.slide .bg-indigo-500\/15,
+.slide .bg-emerald-500\/15,
+.slide .bg-rose-500\/15,
+.slide .bg-amber-500\/10,
+.slide .bg-amber-500\/15 {
+    background: #f4e5da !important;
+}
+.slide .border-sky-500\/20,
+.slide .border-sky-500\/30,
+.slide .border-indigo-500\/20,
+.slide .border-indigo-500\/30,
+.slide .border-emerald-500\/20,
+.slide .border-emerald-500\/30,
+.slide .border-rose-500\/30,
+.slide .border-amber-500\/20,
+.slide .border-amber-500\/30 {
+    border-color: #dfc7b8 !important;
+}
+.slide strong {
+    font-weight: 700;
+}
+.slide p,
+.slide li {
+    line-height: 1.57;
+}
+.slide .grid {
+    position: relative;
+    z-index: 1;
+    min-height: 0;
+}
+.slide .card-pro ul {
+    padding-left: 0;
+    list-style: none;
+}
+@media screen {
+    .mode-single .slide:not(.is-active) {
+        display: none !important;
+    }
+}
+.slide .text-xs {
+    font-size: 12px !important;
+}
+.slide .text-sm {
+    font-size: 14px !important;
+}
+.slide .card-pro .text-xs {
+    font-size: 12px !important;
+}
+.slide[data-slide="1"] {
+    background: #e8e8dc !important;
+}
+.slide[data-slide="1"]:before {
+    font-size: 520px;
+    bottom: -0.22em;
+    right: 0.02em;
+    content: "H";
+    color: #c9d2c7;
+    opacity: 0.8;
+}
+.slide[data-slide="1"] h1 {
+    font-size: clamp(49px, 5vw, 78px) !important;
+    max-width: 680px;
+}
+.slide[data-slide="1"] > div:nth-child(2) {
+    position: relative;
+    z-index: 2;
+}
+.slide[data-slide="1"] .text-xl {
+    font-size: 21px !important;
+}
+.slide[data-slide="2"]:before {
+    content: "↗";
+    font-size: 400px;
+    right: -40px;
+    bottom: -190px;
+}
+.nav {
+    position: fixed;
+    left: 50%;
+    bottom: 22px;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    z-index: 30;
+    padding: 9px 12px;
+    border-radius: 8px;
+    background: #f9f8f3;
+    box-shadow: 0 12px 40px #0005;
+    border: 1px solid #d9dfd4;
+    color: #152721;
+}
+.nav a,
+.nav button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 38px;
+    height: 35px;
+    padding: 0 10px;
+    text-decoration: none;
+    cursor: pointer;
+    background: none;
+    border: 0;
+    border-radius: 4px;
+    color: #243e36;
+    font-size: 12px;
+    font-weight: 700;
+}
+.nav a:hover,
+.nav button:hover {
+    background: #e6ece3;
+}
+.nav a[aria-disabled="true"] {
+    opacity: 0.3;
+    pointer-events: none;
+}
+.nav .counter {
+    font:
+        600 12px "IBM Plex Mono",
+        monospace;
+    padding: 0 10px;
+    white-space: nowrap;
+    color: #586a62;
+}
+.nav .primary {
+    background: var(--accent);
+    color: white;
+}
+.nav .primary:hover {
+    background: var(--accent-dark);
+}
+.progress {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 5px;
+    background: #29443a;
+    z-index: 40;
+}
+.progress > div {
+    height: 100%;
+    background: #ed8661;
+    transition: width 0.25s;
+}
+.page-label {
+    position: fixed;
+    left: 22px;
+    bottom: 27px;
+    color: #d6e3d9;
+    font:
+        500 11px "IBM Plex Mono",
+        monospace;
+    letter-spacing: 0.1em;
+}
+@media print {
+    @page {
+        size: 1382px 777px;
+        margin: 0;
+    }
+    html,
+    body {
+        background: white !important;
+    }
+    body:before,
+    .nav,
+    .progress,
+    .page-label {
+        display: none !important;
+    }
+    .shell {
+        display: block;
+        min-height: auto;
+        padding: 0 !important;
+        overflow: visible !important;
+    }
+    .slide {
+        page-break-after: always;
+        break-after: page;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        width: 1382px !important;
+        height: 777px !important;
+        min-height: 0 !important;
+        max-width: none !important;
+        transform: none !important;
+        padding: 36px 49px 41px !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+    .slide:last-of-type {
+        page-break-after: auto;
+        break-after: auto;
+    }
+}
+
+/* Center slide presentation */
+body.mode-single {
+    margin: 0;
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+}
+
+body.mode-single .shell {
+    width: min(1280px, calc(100% - 32px));
+    max-width: 1280px;
+    margin-inline: auto;
+    padding: 0;
+    position: relative;
+    left: auto;
+    right: auto;
+    transform: none;
+    box-sizing: border-box;
+}
+
+body.mode-single .slide {
+    width: 100%;
+    max-width: 100%;
+    margin-inline: auto;
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    body.mode-single .shell {
+        width: calc(100% - 24px);
+    }
+}
